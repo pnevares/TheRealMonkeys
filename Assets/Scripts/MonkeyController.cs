@@ -60,8 +60,8 @@ public class MonkeyController : MonoBehaviour {
             audioSource.Play ();
         }
 
-        if (selected && !real) {
-            Debug.Log ("Fooled by a fake monkey!");
-        }
+//        if (selected && !real) {
+//            Debug.Log ("Fooled by a fake monkey!");
+//        }
     }
 }

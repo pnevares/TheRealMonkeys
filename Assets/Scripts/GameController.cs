@@ -16,17 +16,9 @@ public class GameController : MonoBehaviour {
         for (int i = 0; i < 6; i++) {
             monkeys.Add((GameObject)Instantiate (monkey));
         }
-
-
 	}
 
     public void Done() {
-        // get count of monkeys
-
-        // poll each monkey for Selected and Real states
-
-        // calculate success rate
-
         // output to screen
 
         // "Talk Is Cheap" - sort monkeys into real and fake columns, persisting selection arrows
@@ -34,19 +26,25 @@ public class GameController : MonoBehaviour {
         // show restart button
 
 
-        int realMonkeys = 0;
         int realMonkeysFound = 0;
+        int realMonkeysMissed = 0;
+        int fakeMonkeysSelected = 0;
         foreach (GameObject monkey in monkeys) {
             MonkeyController monkeyController = monkey.GetComponent<MonkeyController> ();
             if (monkeyController.IsReal ()) {
-                realMonkeys++;
                 if (monkeyController.IsSelected ()) {
                     realMonkeysFound++;
+                } else {
+                    realMonkeysMissed++;
                 }
+            } else if (monkeyController.IsSelected ()) {
+                fakeMonkeysSelected++;
             }
         }
 
-        resultsText.text = realMonkeys + " real monkeys\n" + realMonkeysFound + " real monkeys found";
+        resultsText.text = realMonkeysFound + " real monkeys found\n" +
+            realMonkeysMissed + " real monkeys missed\n" +
+            "Fooled by " + fakeMonkeysSelected + " fake monkeys";
     }
 
     void MainMenu() {
