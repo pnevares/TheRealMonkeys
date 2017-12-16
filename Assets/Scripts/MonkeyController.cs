@@ -1,28 +1,24 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MonkeyController : MonoBehaviour {
 	public float moveSpeed;
+    public Vector2 destination;
 
 	private Rigidbody2D rb;
 
 	void Start() {
-		rb = GetComponent<Rigidbody2D> ();
+        rb = GetComponent<Rigidbody2D> ();
+
+        rb.position = new Vector2 (Random.Range (-6, 6), Random.Range (-4, 4));
+        destination = new Vector2 (Random.Range (-6, 6), Random.Range (-4, 4));
 	}
 
 	void Update () {
-		rb.MovePosition(new Vector2(transform.position.x - moveSpeed * GetRandomDirection(), transform.position.y - moveSpeed * GetRandomDirection()));
-	}
-
-	int GetRandomDirection() {
-		switch (Random.Range (0, 3)) {
-		case 0:
-			return -1;
-		case 1:
-			return 0;
-		default:
-			return 1;
-		}
+        if ((rb.position - destination).sqrMagnitude <= 0.1) {
+            destination = new Vector2 (Random.Range (-6, 6), Random.Range (-4, 4));
+        }
+        rb.position = Vector2.Lerp(rb.position, destination, moveSpeed * Time.deltaTime);
 	}
 }
