@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
-    public GameObject monkey;
     public Text resultsText;
+    public GameObject monkey;
+    public GameObject doneButton;
 
     private List<GameObject> monkeys;
 
@@ -20,6 +22,8 @@ public class GameController : MonoBehaviour {
 
     public void Done() {
         // "Talk Is Cheap" - sort monkeys into real and fake columns, persisting selection arrows
+
+        doneButton.SetActive (false);
 
         int realMonkeysFound = 0;
         int realMonkeysMissed = 0;
@@ -45,7 +49,7 @@ public class GameController : MonoBehaviour {
             "Fooled by " + fakeMonkeysSelected + " fake monkeys";
     }
 
-    void MainMenu() {
-        // Start Game button
+    public void Restart() {
+        SceneManager.LoadScene ("Game", LoadSceneMode.Single);
     }
 }
