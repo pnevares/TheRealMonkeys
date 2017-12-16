@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class MonkeyController : MonoBehaviour {
 	public float moveSpeed;
-    public Vector2 destination;
     public GameObject selectionArrow;
     public AudioClip selectionClip;
     public AudioClip deselectionClip;
     public AudioClip mechanicalClip;
 
+    private Vector2 destination;
     private AudioSource audioSource;
     private bool real = false;
     private bool selected = false;
@@ -44,7 +44,7 @@ public class MonkeyController : MonoBehaviour {
         transform.position = Vector2.Lerp(transform.position, destination, moveSpeed * Time.deltaTime);
 	}
 
-    void OnMouseDown() {
+    private void OnMouseDown() {
         ToggleSelected ();
     }
 

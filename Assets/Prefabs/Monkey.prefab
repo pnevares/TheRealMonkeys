@@ -219,10 +219,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
-  destination: {x: 0, y: 0}
   selectionArrow: {fileID: 1614331169072222}
-  selectionClip: {fileID: 8300000, guid: 753dc9901869942a69b4590cad0b0faa, type: 3}
-  deselectionClip: {fileID: 8300000, guid: 90f9714e66f5145f79ffbec8ea0ea528, type: 3}
+  selectionClip: {fileID: 8300000, guid: 90f9714e66f5145f79ffbec8ea0ea528, type: 3}
+  deselectionClip: {fileID: 8300000, guid: 753dc9901869942a69b4590cad0b0faa, type: 3}
   mechanicalClip: {fileID: 8300000, guid: 3d73a0185bfe54bab9af47fa74242e39, type: 3}
 --- !u!212 &212715893524238676
 SpriteRenderer:
