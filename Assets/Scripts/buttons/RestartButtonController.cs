@@ -1,19 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class DoneController : MonoBehaviour {
+public class RestartButtonController : MonoBehaviour {
     private SpriteRenderer sprite;
-    private GameController gameController;
 
     private void Start() {
         sprite = GetComponent<SpriteRenderer> ();
-        GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
-        gameController = gameControllerObject.GetComponent<GameController> ();
     }
 
     private void OnMouseDown() {
-        gameController.Done ();
+        SceneManager.LoadScene("Game", LoadSceneMode.Single);
     }
 
     private void OnMouseEnter() {
