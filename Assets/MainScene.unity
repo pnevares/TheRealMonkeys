@@ -277,4 +277,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e10049f90452b433da7b6cd6e46abc36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  realMonkeys: 0
   monkey: {fileID: 1786109326039156, guid: d1a47dbe8e61541d18ec0513b6b7f07c, type: 2}
