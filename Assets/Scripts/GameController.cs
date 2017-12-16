@@ -19,12 +19,7 @@ public class GameController : MonoBehaviour {
 	}
 
     public void Done() {
-        // output to screen
-
         // "Talk Is Cheap" - sort monkeys into real and fake columns, persisting selection arrows
-
-        // show restart button
-
 
         int realMonkeysFound = 0;
         int realMonkeysMissed = 0;
@@ -40,7 +35,10 @@ public class GameController : MonoBehaviour {
             } else if (monkeyController.IsSelected ()) {
                 fakeMonkeysSelected++;
             }
+            Destroy (monkey);
         }
+
+
 
         resultsText.text = realMonkeysFound + " real monkeys found\n" +
             realMonkeysMissed + " real monkeys missed\n" +
