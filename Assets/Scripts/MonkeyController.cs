@@ -6,21 +6,62 @@ public class MonkeyController : MonoBehaviour {
 	public float moveSpeed;
     public Vector2 destination;
     public GameObject selectionArrow;
+    public AudioClip selectionClip;
+    public AudioClip deselectionClip;
+    public AudioClip mechanicalClip;
 
-	private Rigidbody2D rb;
+    private AudioSource audioSource;
+    private bool real = false;
+    private bool selected = false;
 
-	void Start() {
-        rb = GetComponent<Rigidbody2D> ();
+    public bool IsSelected() {
+        return selected;
+    }
 
-        rb.position = new Vector2 (Random.Range (-6, 6), Random.Range (-4, 4));
-        destination = new Vector2 (Random.Range (-6, 6), Random.Range (-4, 4));
+    public bool IsReal() {
+        return real;
+    }
+
+    private void Start() {
+        real = Random.Range (0, 2) == 0;
+
+        audioSource = GetComponent<AudioSource> ();
+
+        transform.position = new Vector2 (Random.Range (-6, 6), Random.Range (-4, 4));
+        destination = transform.position;
 	}
 
-	void Update () {
-        if ((rb.position - destination).sqrMagnitude <= 0.1) {
+	private void Update () {
+        if (((Vector2)transform.position - destination).sqrMagnitude <= 0.1) {
+            audioSource.Stop();
+
             destination = new Vector2 (Random.Range (-6, 6), Random.Range (-4, 4));
-            selectionArrow.SetActive(!selectionArrow.activeInHierarchy);
+            if (!real) {
+                audioSource.clip = mechanicalClip;
+                audioSource.Play();
+            }
         }
-        rb.position = Vector2.Lerp(rb.position, destination, moveSpeed * Time.deltaTime);
+        transform.position = Vector2.Lerp(transform.position, destination, moveSpeed * Time.deltaTime);
 	}
+
+    void OnMouseDown() {
+        ToggleSelected ();
+    }
+
+    private void ToggleSelected() {
+        selected = !selected;
+        selectionArrow.SetActive(selected);
+
+        if (selected) {
+            audioSource.clip = selectionClip;
+            audioSource.Play ();
+        } else {
+            audioSource.clip = deselectionClip;
+            audioSource.Play ();
+        }
+
+        if (selected && !real) {
+            Debug.Log ("Fooled by a fake monkey!");
+        }
+    }
 }
