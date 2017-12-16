@@ -35,3 +35,7 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+TheRealMonkeys-v0.1.1_Data/
+UnityPlayer.dll
+
