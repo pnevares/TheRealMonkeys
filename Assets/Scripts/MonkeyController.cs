@@ -33,6 +33,10 @@ public class MonkeyController : MonoBehaviour {
         destination = coordinates;
     }
 
+    public void SetSpeed(float speed) {
+        moveSpeed = speed;
+    }
+
     private void Start() {
         real = Random.Range (0, 2) == 0;
 
@@ -48,7 +52,7 @@ public class MonkeyController : MonoBehaviour {
             if (((Vector2)transform.position - destination).sqrMagnitude <= 0.1) {
                 audioSource.Stop ();
 
-                destination = new Vector2 (Random.Range (-6, 6), Random.Range (-4, 4));
+                destination = new Vector2 (Random.Range (-6f, 6f), Random.Range (-4f, 4f));
                 if (!real) {
                     audioSource.clip = mechanicalClip;
                     audioSource.Play ();
@@ -60,12 +64,9 @@ public class MonkeyController : MonoBehaviour {
             if (!real) {
                 sprite.sprite = fakeMonkey;
             }
-            destination = Vector2.zero;
         }
 
-        if (destination != Vector2.zero) {
-            transform.position = Vector2.Lerp (transform.position, destination, moveSpeed * Time.deltaTime);
-        }
+        transform.position = Vector2.Lerp (transform.position, destination, moveSpeed * Time.deltaTime);
 	}
 
     private void OnMouseDown() {

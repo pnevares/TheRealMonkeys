@@ -30,6 +30,7 @@ public class GameController : MonoBehaviour {
                 MonkeyController monkeyController = monkey.GetComponent<MonkeyController> ();
 
                 monkeyController.Pause ();
+                monkeyController.SetSpeed (3f);
                 monkeyController.SetDestination (monkeyPosition);
                 monkeyPosition.x += 1.5f;
             }
