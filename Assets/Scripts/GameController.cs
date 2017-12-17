@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour {
     public GameObject monkey;
     public GameObject doneButton;
 
+    private bool noText = true;
     private List<GameObject> monkeys;
 
     private void Start () {
@@ -21,32 +22,39 @@ public class GameController : MonoBehaviour {
 	}
 
     public void Done() {
-        // "Talk Is Cheap" - sort monkeys into real and fake columns, persisting selection arrows
-
         doneButton.SetActive (false);
 
-        int realMonkeysFound = 0;
-        int realMonkeysMissed = 0;
-        int fakeMonkeysSelected = 0;
-        foreach (GameObject monkey in monkeys) {
-            MonkeyController monkeyController = monkey.GetComponent<MonkeyController> ();
-            if (monkeyController.IsReal ()) {
-                if (monkeyController.IsSelected ()) {
-                    realMonkeysFound++;
-                } else {
-                    realMonkeysMissed++;
-                }
-            } else if (monkeyController.IsSelected ()) {
-                fakeMonkeysSelected++;
+        if (noText) {
+            Vector2 monkeyPosition = new Vector2 (-5.5f, 3.5f);
+            foreach (GameObject monkey in monkeys) {
+                MonkeyController monkeyController = monkey.GetComponent<MonkeyController> ();
+
+                monkeyController.Pause ();
+                monkeyController.SetDestination (monkeyPosition);
+                monkeyPosition.x += 1.5f;
             }
-            Destroy (monkey);
-        }
+        } else {
+            int realMonkeysFound = 0;
+            int realMonkeysMissed = 0;
+            int fakeMonkeysSelected = 0;
+            foreach (GameObject monkey in monkeys) {
+                MonkeyController monkeyController = monkey.GetComponent<MonkeyController> ();
+                if (monkeyController.IsReal ()) {
+                    if (monkeyController.IsSelected ()) {
+                        realMonkeysFound++;
+                    } else {
+                        realMonkeysMissed++;
+                    }
+                } else if (monkeyController.IsSelected ()) {
+                    fakeMonkeysSelected++;
+                }
+                Destroy (monkey);
+            }
 
-
-
-        resultsText.text = realMonkeysFound + " real monkeys found\n" +
+            resultsText.text = realMonkeysFound + " real monkeys found\n" +
             realMonkeysMissed + " real monkeys missed\n" +
             "Fooled by " + fakeMonkeysSelected + " fake monkeys";
+        }
     }
 
     public void Restart() {

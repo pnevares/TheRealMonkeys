@@ -220,6 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   selectionArrow: {fileID: 1614331169072222}
+  fakeMonkey: {fileID: 21300000, guid: 2d543cd835363493aab5edab565a1d11, type: 3}
   selectionClip: {fileID: 8300000, guid: 90f9714e66f5145f79ffbec8ea0ea528, type: 3}
   deselectionClip: {fileID: 8300000, guid: 753dc9901869942a69b4590cad0b0faa, type: 3}
   mechanicalClip: {fileID: 8300000, guid: 3d73a0185bfe54bab9af47fa74242e39, type: 3}
