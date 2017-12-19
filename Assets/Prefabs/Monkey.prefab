@@ -136,9 +136,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3d73a0185bfe54bab9af47fa74242e39, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.156
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
   fakeMonkey: {fileID: 21300000, guid: 2d543cd835363493aab5edab565a1d11, type: 3}
   selectionClip: {fileID: 8300000, guid: 90f9714e66f5145f79ffbec8ea0ea528, type: 3}
   deselectionClip: {fileID: 8300000, guid: 753dc9901869942a69b4590cad0b0faa, type: 3}
-  mechanicalClip: {fileID: 8300000, guid: 3d73a0185bfe54bab9af47fa74242e39, type: 3}
+  mechanicalClip: {fileID: 8300000, guid: ba273f50aedf24ce6b94bc456fb1960d, type: 3}
 --- !u!212 &212715893524238676
 SpriteRenderer:
   m_ObjectHideFlags: 1

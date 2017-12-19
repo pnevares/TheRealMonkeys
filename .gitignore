@@ -35,7 +35,7 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
-
+Builds/
 TheRealMonkeys-v0.1.1_Data/
 UnityPlayer.dll
 
