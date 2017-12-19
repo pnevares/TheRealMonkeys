@@ -37,12 +37,14 @@ public class MonkeyController : MonoBehaviour {
         moveSpeed = speed;
     }
 
-    private void Start() {
-        real = Random.Range (0, 2) == 0;
-
+    private void Awake() {
         audioSource = GetComponent<AudioSource> ();
         sprite = GetComponentInChildren<SpriteRenderer> ();
+    }
 
+    private void Start() {
+        real = Random.Range (0, 2) == 0;
+     
         transform.position = new Vector2 (Random.Range (-6, 6), Random.Range (-4, 4));
         destination = transform.position;
 	}
@@ -86,9 +88,5 @@ public class MonkeyController : MonoBehaviour {
             audioSource.clip = deselectionClip;
             audioSource.Play ();
         }
-
-//        if (selected && !real) {
-//            Debug.Log ("Fooled by a fake monkey!");
-//        }
     }
 }

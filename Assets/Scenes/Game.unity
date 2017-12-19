@@ -289,8 +289,8 @@ GameObject:
   m_Component:
   - component: {fileID: 838920966}
   - component: {fileID: 838920965}
-  - component: {fileID: 838920967}
   - component: {fileID: 838920968}
+  - component: {fileID: 838920967}
   m_Layer: 0
   m_Name: Done button
   m_TagString: Untagged
@@ -366,6 +366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5067fe7e245b64b3a8c4c60feec96925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite: {fileID: 838920965}
 --- !u!61 &838920968
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -420,6 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4bcc7bc055849b7937c5dc7f822cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite: {fileID: 883210324}
 --- !u!61 &883210323
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -613,6 +615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0755e6d150da34a758c866eeb1e7fdd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite: {fileID: 1170804956}
 --- !u!1 &1574956628
 GameObject:
   m_ObjectHideFlags: 0

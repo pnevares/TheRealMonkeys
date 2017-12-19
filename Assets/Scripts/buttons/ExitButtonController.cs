@@ -4,11 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ExitButtonController : MonoBehaviour {
+    [SerializeField]
     private SpriteRenderer sprite;
-
-    private void Start() {
-        sprite = GetComponent<SpriteRenderer> ();
-    }
 
     private void OnMouseDown() {
         Application.Quit ();

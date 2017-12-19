@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RestartButtonController : MonoBehaviour {
+    [SerializeField]
     private SpriteRenderer sprite;
     private GameController gameController;
 
     private void Start() {
-        sprite = GetComponent<SpriteRenderer> ();
         GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
         gameController = gameControllerObject.GetComponent<GameController> ();
     }
