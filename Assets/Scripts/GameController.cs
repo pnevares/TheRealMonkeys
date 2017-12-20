@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour {
     public GameObject doneButton;
 
     private bool noText = true;
+    private bool gameOver = false;
     private List<GameObject> monkeys;
 
     private void Start () {
@@ -37,7 +38,7 @@ public class GameController : MonoBehaviour {
             foreach (GameObject monkey in monkeys) {
                 MonkeyController monkeyController = monkey.GetComponent<MonkeyController> ();
 
-                monkeyController.Pause ();
+                gameOver = true;
                 monkeyController.SetSpeed (3f);
                 monkeyController.SetDestination (monkeyPosition);
                 monkeyPosition.x += 1.5f;
@@ -64,6 +65,10 @@ public class GameController : MonoBehaviour {
             realMonkeysMissed + " real monkeys missed\n" +
             "Fooled by " + fakeMonkeysSelected + " fake monkeys";
         }
+    }
+
+    public bool IsGameOver() {
+        return gameOver;
     }
 
     public void Restart() {

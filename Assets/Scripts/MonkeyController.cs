@@ -13,9 +13,11 @@ public class MonkeyController : MonoBehaviour {
     private Vector2 destination;
     private AudioSource audioSource;
     private bool real = false;
-    private bool paused = false;
     private bool selected = false;
+    private bool revealed = false;
     private SpriteRenderer sprite;
+    private Animator animator;
+    private GameController gameController;
 
     public bool IsSelected() {
         return selected;
@@ -23,10 +25,6 @@ public class MonkeyController : MonoBehaviour {
 
     public bool IsReal() {
         return real;
-    }
-
-    public void Pause() {
-        paused = true;
     }
 
     public void SetDestination(Vector2 coordinates) {
@@ -42,20 +40,21 @@ public class MonkeyController : MonoBehaviour {
     }
 
     private void Awake() {
+        animator = GetComponent<Animator> ();
         audioSource = GetComponent<AudioSource> ();
         sprite = GetComponentInChildren<SpriteRenderer> ();
+        GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
+        gameController = gameControllerObject.GetComponent<GameController> ();
     }
 
     private void Start() {
-//        real = Random.Range (0, 2) == 0;
-     
         transform.position = new Vector2 (Random.Range (-6, 6), Random.Range (-4, 4));
         destination = transform.position;
 	}
 
 	private void Update () {
-        if (!paused) {
-            if (((Vector2)transform.position - destination).sqrMagnitude <= 0.1) {
+        if (((Vector2)transform.position - destination).sqrMagnitude <= 0.1) {
+            if (!gameController.IsGameOver ()) {
                 audioSource.Stop ();
 
                 destination = new Vector2 (Random.Range (-6f, 6f), Random.Range (-4f, 4f));
@@ -63,20 +62,23 @@ public class MonkeyController : MonoBehaviour {
                     audioSource.clip = mechanicalClip;
                     audioSource.Play ();
                 }
+            } else {
+                if (!revealed) {
+                    animator.SetTrigger ("RevealT");
+                    if (!real) {
+                        sprite.sprite = fakeMonkey;
+                    }
+                }
+                revealed = true;
             }
-        }
 
-        if (paused && ((Vector2)transform.position - destination).sqrMagnitude <= 0.01) {
-            if (!real) {
-                sprite.sprite = fakeMonkey;
-            }
         }
 
         transform.position = Vector2.Lerp (transform.position, destination, moveSpeed * Time.deltaTime);
 	}
 
     private void OnMouseDown() {
-        if (!paused) {
+        if (!gameController.IsGameOver()) {
             ToggleSelected ();
         }
     }
