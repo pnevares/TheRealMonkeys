@@ -13,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Monkeys
+  - Grass
   - 
   - 
   - 
@@ -40,6 +40,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Monkeys
+    uniqueID: 1129615333
     locked: 0
   - name: Selected
     uniqueID: 3087292975
