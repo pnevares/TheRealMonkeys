@@ -33,6 +33,10 @@ public class MonkeyController : MonoBehaviour {
         destination = coordinates;
     }
 
+    public void SetReal(bool flag) {
+        real = flag;
+    }
+
     public void SetSpeed(float speed) {
         moveSpeed = speed;
     }
@@ -43,7 +47,7 @@ public class MonkeyController : MonoBehaviour {
     }
 
     private void Start() {
-        real = Random.Range (0, 2) == 0;
+//        real = Random.Range (0, 2) == 0;
      
         transform.position = new Vector2 (Random.Range (-6, 6), Random.Range (-4, 4));
         destination = transform.position;

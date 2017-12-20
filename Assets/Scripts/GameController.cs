@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
+    [Range(4, 8)]
+    public int monkeyCount;
     public Text resultsText;
     public GameObject monkey;
     public GameObject doneButton;
@@ -15,9 +17,15 @@ public class GameController : MonoBehaviour {
     private void Start () {
         resultsText.text = "";
 
+        int realMonkeys = Random.Range (1, 4);
+
         monkeys = new List<GameObject> ();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < monkeyCount; i++) {
             monkeys.Add((GameObject)Instantiate (monkey));
+            if (i < realMonkeys) {
+                MonkeyController monkeyController = monkeys [i].GetComponent<MonkeyController> ();
+                monkeyController.SetReal (true);
+            }
         }
 	}
 
