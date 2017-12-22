@@ -4,6 +4,7 @@ Monkey sprite and mouse cursor courtesy of @KenneyNL http://www.kenney.nl/  (CC0
 Fake monkey sprite modified from above.  
 
 Icons courtesy of Unruly Games http://u3d.as/XNN  
+Particles courtesy of UETools http://u3d.as/9GN  
 
 Sounds courtesy of freesound.org:  
 https://freesound.org/people/jobro/sounds/74833/ (CC BY 3.0)  

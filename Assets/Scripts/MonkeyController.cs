@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MonkeyController : MonoBehaviour {
-	public float moveSpeed;
+    public float moveSpeed;
     public GameObject selectionArrow;
     public Sprite fakeMonkey;
     public AudioClip selectionClip;
@@ -17,6 +17,7 @@ public class MonkeyController : MonoBehaviour {
     private bool revealed = false;
     private SpriteRenderer sprite;
     private Animator animator;
+    private ParticleSystem particle;
     private GameController gameController;
 
     public bool IsSelected() {
@@ -67,6 +68,9 @@ public class MonkeyController : MonoBehaviour {
                     animator.SetTrigger ("RevealT");
                     if (!real) {
                         sprite.sprite = fakeMonkey;
+                    } else if (selected) {
+                        particle = GetComponentInChildren<ParticleSystem> (); // this doesn't work if the particle's parent is disabled
+                        particle.Play ();
                     }
                 }
                 revealed = true;
