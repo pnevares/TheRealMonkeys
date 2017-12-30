@@ -12,6 +12,7 @@ public class MonkeyController : MonoBehaviour {
 
     private Vector2 destination;
     private AudioSource audioSource;
+    private bool patrol = true;
     private bool real = false;
     private bool selected = false;
     private bool revealed = false;
@@ -28,8 +29,17 @@ public class MonkeyController : MonoBehaviour {
         return real;
     }
 
+    public void PlayMoveSound() {
+        audioSource.clip = mechanicalClip;
+        audioSource.Play ();
+    }
+
     public void SetDestination(Vector2 coordinates) {
         destination = coordinates;
+    }
+
+    public void SetPatrol(bool flag) {
+        patrol = flag;
     }
 
     public void SetReal(bool flag) {
@@ -38,6 +48,19 @@ public class MonkeyController : MonoBehaviour {
 
     public void SetSpeed(float speed) {
         moveSpeed = speed;
+    }
+
+    public void ToggleSelected() {
+        selected = !selected;
+        selectionArrow.SetActive(selected);
+
+        if (selected) {
+            audioSource.clip = selectionClip;
+            audioSource.Play ();
+        } else {
+            audioSource.clip = deselectionClip;
+            audioSource.Play ();
+        }
     }
 
     private void Awake() {
@@ -55,15 +78,14 @@ public class MonkeyController : MonoBehaviour {
 
 	private void Update () {
         if (((Vector2)transform.position - destination).sqrMagnitude <= 0.1) {
-            if (!gameController.IsGameOver ()) {
+            if (!gameController.IsGameOver () && patrol) {
                 audioSource.Stop ();
 
                 destination = new Vector2 (Random.Range (-6f, 6f), Random.Range (-4f, 4f));
                 if (!real) {
-                    audioSource.clip = mechanicalClip;
-                    audioSource.Play ();
+                    PlayMoveSound ();
                 }
-            } else {
+            } else if(gameController.IsGameOver()) {
                 if (!revealed) {
                     animator.SetTrigger ("RevealT");
                     if (!real) {
@@ -84,19 +106,6 @@ public class MonkeyController : MonoBehaviour {
     private void OnMouseDown() {
         if (!gameController.IsGameOver()) {
             ToggleSelected ();
-        }
-    }
-
-    private void ToggleSelected() {
-        selected = !selected;
-        selectionArrow.SetActive(selected);
-
-        if (selected) {
-            audioSource.clip = selectionClip;
-            audioSource.Play ();
-        } else {
-            audioSource.clip = deselectionClip;
-            audioSource.Play ();
         }
     }
 }
